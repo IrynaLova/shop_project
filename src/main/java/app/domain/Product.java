@@ -3,16 +3,18 @@ package app.domain;
 import java.util.Objects;
 
 public class Product {
-    private final Long id;
+    private Long id;
     private boolean isActive;
     private String name;
     private double price;
 
-    public Product(Long id, boolean isActive, String name, double price) {
-        this.id = id;
+    public Product(boolean isActive, String name, double price) {
         this.isActive = isActive;
         this.name = name;
         this.price = price;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Long getId() {

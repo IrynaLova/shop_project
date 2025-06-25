@@ -6,15 +6,18 @@ import java.util.Objects;
 
 //POJO - Plain Old Java Object
 public class Customer {
-    private final Long id;
+    private Long id;
     private boolean isActive;
     private String name;
     private final List<Product> product = new ArrayList<>();
 
-    public Customer(Long id, boolean isActive, String name) {
-        this.id = id;
+    public Customer(boolean isActive, String name) {
         this.isActive = isActive;
         this.name = name;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
