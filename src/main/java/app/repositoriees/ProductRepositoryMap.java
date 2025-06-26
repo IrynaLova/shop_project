@@ -50,14 +50,37 @@ public class ProductRepositoryMap implements ProductRepository {
         Long id = product.getId();
         double newPrice = product.getPrice();
         String newName = product.getName();
+        boolean newActive = product.isActive();
 
         Product oldProduct = findById(id);
 
         if (oldProduct != null) {
             oldProduct.setName(newName);
             oldProduct.setPrice(newPrice);
+            oldProduct.setActive(newActive);
         }
 
         return oldProduct;
+    }
+
+    public static void main(String[] args){
+        ProductRepository repository = new ProductRepositoryMap();
+
+        System.out.println(repository.save(new Product(true,"Coffee", 3)));
+        //TODO check null field name
+        //System.out.println(repository.save("Cat"));
+        System.out.println(repository.save(new Product(true,"Baguette", 4)));
+
+        System.out.println(repository.findAll());
+
+        System.out.println(repository.findById(2L));
+        
+        System.out.println("============== Delete ==============");
+        repository.deleteById(1L);
+        System.out.println(repository.findById(1L));
+        System.out.println("============== Update ==============");
+        Product newProduct = new Product(true, "Baguette", 7);
+        newProduct.setId(2L);
+        System.out.println(repository.updateById(newProduct));
     }
 }
